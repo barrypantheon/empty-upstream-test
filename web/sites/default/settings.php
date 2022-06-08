@@ -772,6 +772,13 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 
 $settings['config_sync_directory'] = dirname(DRUPAL_ROOT) . '/config/sync';
 
+if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
+  $pantheon_settings = __DIR__ . "/settings.pantheon.php";
+  if (file_exists($pantheon_settings)) {
+    include $pantheon_settings;
+  }    
+}
+
 $local_settings = __DIR__ . "/settings.local.php";
 if (file_exists($local_settings)) {
   include $local_settings;
