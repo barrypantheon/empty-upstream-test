@@ -1,0 +1,31 @@
+name: Deploy to Pantheon
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.PANTHEON_SSH_KEY }}
+        config: ${{ secrets.SSH_CONFIG }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: Setup PHP Action
+      uses: shivammathur/setup-php@2.19.1
+    - name: deployer
+      env:
+        pantheon_repo: '${{ secrets.PANTHEON_REPO }}'
+      run: |
+        rm .gitignore
+        composer install
+        git config user.email "barry.meehan@pantheon.io"
+        git config user.name "Barry Meehan"
+        git add .
+        git commit -m 
+        git remote add pantheon $pantheon_repo
+        git fetch pantheon master
+        git merge pantheon/master --allow-unrelated-histories
+        git push pantheon HEAD:master
