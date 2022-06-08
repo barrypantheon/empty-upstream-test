@@ -24,7 +24,7 @@ jobs:
         git config user.email "barry.meehan@pantheon.io"
         git config user.name "Barry Meehan"
         git add .
-        git commit -m 
+        git commit -m 'Commit all files'
         git remote add pantheon $pantheon_repo
         git fetch pantheon master
         git merge pantheon/master --allow-unrelated-histories
