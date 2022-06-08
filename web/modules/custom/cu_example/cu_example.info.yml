@@ -1,0 +1,4 @@
+name : 'CU Example'
+description : 'Just a simple controller to display a page.'
+core_version_requirement: ^8.8 || ^9
+type: module

@@ -1,0 +1,7 @@
+cu_example.content:
+  path: '/cu-example-content'
+  defaults:
+    _controller: 'Drupal\cu_example\Controller\CuExampleController::content'
+    _title: 'Example'
+  requirements:
+    _permission: 'access content'
