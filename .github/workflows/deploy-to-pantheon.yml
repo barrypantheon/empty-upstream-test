@@ -19,12 +19,12 @@ jobs:
       env:
         pantheon_repo: '${{ secrets.PANTHEON_REPO }}'
       run: |
-        rm .gitignore
         git config user.email "barry.meehan@pantheon.io"
         git config user.name "Barry Meehan"
         git remote add pantheon $pantheon_repo
         git fetch pantheon master
         git merge pantheon/master --allow-unrelated-histories
+        rm .gitignore
         composer install
         git add -f .
         git commit -nam 'Commit all files'
